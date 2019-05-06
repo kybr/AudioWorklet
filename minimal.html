@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Web Audio Worklet Experiment</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!--
+      It is Chrome policy that a page cannot make sound until
+      the user makes the first move, as it were. We use this
+      opportunity to make audio calculation explicit with a
+      button.
+    -->
+    <button id="audio">On</button>
+
+    <div id="full">
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
+
+    <!--
+      I've heard that it is a good idea to load scripts at the
+      *end* of a page, the idea being: the non-script elements
+      of the page are loaded by the time the scripts run. but,
+      here we use 'defer' on the script tag which tells the 
+      browser to load the script only after all page element
+      are loaded.
+    -->
+    <script src="minimal.js" defer></script>
+  </body>
+</html>

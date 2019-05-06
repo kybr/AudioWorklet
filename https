@@ -13,7 +13,7 @@ print(f"https://{host[0]}:{host[1]}/")
 
 httpd.serve_forever()
 
-# generate server.xml with the following command:
+# generate certificate.xml with the following command:
 #    openssl req -new -x509 -keyout server.pem -out server.pem -days 365 -nodes
 # run as follows:
 #    python simple-https-server.py

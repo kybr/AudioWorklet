@@ -10,12 +10,22 @@ class MainProcessor extends AudioWorkletProcessor {
     ]
   }
 
-  constructor(options) {
-    super(options) 
+//  constructor(options) {
+//    super(options) 
+  constructor() {
+    super() 
+
+    this._mouse = [1.0, 1.0];
+
     this.port.onmessage = (event) => {
-      console.log("MainProcessor:", event.data);
+      console.log("MainProcessor:");
+      console.log(event.data);
+      this._mouse = event.data;
     }
-    this.port.postMessage('Hi!');
+
+    this.port.postMessage({message: 'MainProcessor -> MyWorkletNode'});
+
+    this.port.start(); // what does this do? anything?
   }
 
   process(inputs, outputs, parameters) {
@@ -28,9 +38,11 @@ class MainProcessor extends AudioWorkletProcessor {
 
       for (let i = 0; i < inputChannel.length; ++i)
         if (gain.length === 1) {
-          outputChannel[i] = inputChannel[i] * gain[0];
+          outputChannel[i] = inputChannel[i] * this._mouse[0];
+          //outputChannel[i] = inputChannel[i] * gain[0] * _mouse[0];
         } else {
-          outputChannel[i] = inputChannel[i] * gain[i];
+          outputChannel[i] = inputChannel[i] * this._mouse[0];
+          //outputChannel[i] = inputChannel[i] * gain[i] * _mouse[0];
         }
     }
     return true;
